@@ -24,7 +24,15 @@ Some are fake, some are functional, but all are direct compileable with --std=c+
 
 ## Loop
 foreach macro
-Example:
+Visual Studio example:
+```cpp
+foreach ( const int &_value, container ) {
+
+  std::cout << "Value: " << _value << std::endl;
+}
+```
+
+Other example:
 ```cpp
 foreach ( _value, container ) {
 

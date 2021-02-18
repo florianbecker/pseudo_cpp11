@@ -105,10 +105,17 @@ int main() {
     std::cout << "Value: " << (*it) << std::endl;
   } */
 
+#if defined(_MSC_VER)
+  foreach ( const int & _value, container ) {
+
+    std::cout << "Value: " << _value << std::endl;
+  }
+#else
   foreach ( /* const int & */ _value, container ) {
 
     std::cout << "Value: " << ( *_value ) << std::endl;
   }
+#endif
 
   /* C++11 */
   /* for ( const int &_value : container ) {

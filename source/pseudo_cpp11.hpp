@@ -53,8 +53,12 @@
 #endif
 
 /* range based loop function */
+#if defined(_MSC_VER)
+#define foreach( value, container ) for each ( value in container )
+#else
 #define var( v, init ) __typeof( init ) v = ( init )
 #define foreach( iterator, container ) for ( var( iterator, ( container ).begin() ); iterator != ( container ).end(); iterator++ )
+#endif
 
 /* constexpr is available with C++11 */
 /* @note Drop in replacement with C++11 build */
