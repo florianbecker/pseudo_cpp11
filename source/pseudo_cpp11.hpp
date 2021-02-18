@@ -46,19 +46,18 @@
   /* Explicit Keyword fake */
   #define explicit
 
-  /* TODO: Default operator */
-
-  /* TODO: Delete operator */
-
   /* nullptr keyword fake */
   #ifndef nullptr
     #define nullptr 0
   #endif
 #endif
 
+/* TODO: Default operator */
+/* TODO: Delete operator */
 /* TODO: for range based */
-
 /* TODO: __cpp_decltype_auto */
+/* TODO: initializer_list */
+/* TODO: using */
 
 /* constexpr is available with C++11 */
 /* @note Drop in replacement with C++11 build */
@@ -87,30 +86,46 @@
 /* [[noreturn]] is available with C++14 */
 /* @note Just fake and mostly useless */
 /* @note Must be searched and replaced, with C++14 build to remove */
+/* @todo Replace NORETURN with [[noreturn]] */
 #ifdef __has_cpp_attribute
   #if __has_cpp_attribute(noreturn)
-    #pragma message("Replace NORETURN with [[noreturn]]")
+    #define NORETURN [[noreturn]]
+  #else
+    #define NORETURN
   #endif
+#else
+  #define NORETURN
 #endif
-#define NORETURN
 
 /* [[maybe_usused]] is available with C++17 */
 /* Suppress compiler warning for unused */
 /* @note Must be searched and replaced, with C++17 build to remove */
+/* @todo Replace MAYBE_UNUSED with [[maybe_unused]] */
 #ifdef __has_cpp_attribute
   #if __has_cpp_attribute(maybe_unused)
-    #pragma message("Replace MAYBE_UNUSED with [[maybe_unused]]")
+    #define MAYBE_UNUSED [[maybe_unused]]
+  #else
+    #define MAYBE_UNUSED
   #endif
+#else
+  #define MAYBE_UNUSED
 #endif
-#define MAYBE_UNUSED (void)
+
+/* Not specific C++11, but needed with MAYBE_UNUSED */
+/* @todo Remove lines with UNUSED and mark definition with [[maybe_unused]] */
+#define UNUSED (void)
 
 /* [[nodiscard]] is available with C++17 */
 /* Disregard the return result */
 /* @note Just fake */
 /* @note Must be searched and replaced, with C++17 build to remove */
+/* @todo Replace NODISCARD with [[nodiscard]] */
 #ifdef __has_cpp_attribute
   #if __has_cpp_attribute(nodiscard)
-    #pragma message("Replace NODISCARD with [[nodiscard]]")
+    #define NODISCARD [[nodiscard]]
+  #else
+    #define NODISCARD
   #endif
+#else
+  #define NODISCARD
 #endif
-#define NODISCARD

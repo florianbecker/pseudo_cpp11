@@ -30,6 +30,7 @@
 
 /* stl header */
 #include <iostream>
+#include <vector>
 
 /* psuedoCPP11 header */
 #include <pseudo_cpp11.hpp>
@@ -66,14 +67,13 @@ constexpr int b = 5;
 
 int main() {
 
-  int a = 0;
-  MAYBE_UNUSED a;
+  MAYBE_UNUSED int a = 0;
+  UNUSED a;
 
   std::cout << "C++ Build: " << __cplusplus << std::endl;
   std::cout << "Contexpr: " << b << std::endl;
 
-  int *c = nullptr;
-  MAYBE_UNUSED c;
+  MAYBE_UNUSED int *c = nullptr;
   if ( c == nullptr ) {
 
     std::cout << "c == nullptr" << std::endl;
@@ -83,6 +83,8 @@ int main() {
     std::cout << "This should never happen." << std::endl;
   }
 
+//  const int arr[] = { 1, 2, 3, 4, 5, 6, 7, 8, 9 };
+//  std::vector<int> v = { 0, 1, 2, 3, 4, 5 };
 /*  int set1v[] = {10, 20, 30, 40};
   std::vector<int> v = {0, 1, 2, 3, 4, 5};
 
