@@ -38,7 +38,7 @@
 
   /* Final keyword */
   #if defined(_MSC_VER)
-    #define final sealed
+    #define final
   #else
     #define final
   #endif
