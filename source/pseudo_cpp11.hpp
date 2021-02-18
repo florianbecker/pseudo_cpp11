@@ -52,16 +52,9 @@
   #endif
 #endif
 
-/* TODO: Default operator */
-/* TODO: Delete operator */
-
-/* range based foreach function */
+/* range based loop function */
 #define var( v, init ) __typeof( init ) v = ( init )
 #define foreach( iterator, container ) for ( var( iterator, ( container ).begin() ); iterator != ( container ).end(); iterator++ )
-
-/* TODO: __cpp_decltype_auto */
-/* TODO: initializer_list */
-/* TODO: using */
 
 /* constexpr is available with C++11 */
 /* @note Drop in replacement with C++11 build */
