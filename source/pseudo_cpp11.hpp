@@ -79,30 +79,27 @@
   #endif
 #endif
 
-/* noreturn is available with C++14 */
+/* [[noreturn]] is available with C++14 */
 /* @note Just fake and mostly useless */
 /* @note Must be searched and replaced, with C++14 build to remove */
 #if __has_cpp_attribute(noreturn)
-  #define NORETURN [[noreturn]]
-#else
-  #define NORETURN
+  #pragma message("Replace NORETURN with [[noreturn]]")
 #endif
+#define NORETURN
 
-/* maybe_usused is available with C++17 */
+/* [[maybe_usused]] is available with C++17 */
 /* Suppress compiler warning for unused */
 /* @note Must be searched and replaced, with C++17 build to remove */
 #if __has_cpp_attribute(maybe_unused)
-  #define MAYBE_UNUSED [[maybe_unused]]
-#else
-  #define MAYBE_UNUSED (void)
+  #pragma message("Replace MAYBE_UNUSED with [[maybe_unused]]")
 #endif
+#define MAYBE_UNUSED (void)
 
-/* nodiscard is available with C++17 */
+/* [[nodiscard]] is available with C++17 */
 /* Disregard the return result */
 /* @note Just fake */
 /* @note Must be searched and replaced, with C++17 build to remove */
 #if __has_cpp_attribute(nodiscard)
-  #define NODISCARD [[nodiscard]]
-#else
-  #define NODISCARD
+  #pragma message("Replace NODISCARD with [[nodiscard]]")
 #endif
+#define NODISCARD
