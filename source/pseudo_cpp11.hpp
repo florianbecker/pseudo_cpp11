@@ -54,7 +54,11 @@
 
 /* TODO: Default operator */
 /* TODO: Delete operator */
-/* TODO: for range based */
+
+/* range based foreach function */
+#define var( v, init ) __typeof( init ) v = ( init )
+#define foreach( iterator, container ) for ( var( iterator, ( container ).begin() ); iterator != ( container ).end(); iterator++ )
+
 /* TODO: __cpp_decltype_auto */
 /* TODO: initializer_list */
 /* TODO: using */

@@ -32,7 +32,7 @@
 #include <iostream>
 #include <vector>
 
-/* psuedoCPP11 header */
+/* psuedo_cpp11 header */
 #include <pseudo_cpp11.hpp>
 
 class Test {
@@ -83,14 +83,38 @@ int main() {
     std::cout << "This should never happen." << std::endl;
   }
 
-//  const int arr[] = { 1, 2, 3, 4, 5, 6, 7, 8, 9 };
-//  std::vector<int> v = { 0, 1, 2, 3, 4, 5 };
-/*  int set1v[] = {10, 20, 30, 40};
-  std::vector<int> v = {0, 1, 2, 3, 4, 5};
+//  const int container[] = { 0, 1, 1, 2, 3, 5, 8, 13, 21, 34, 55, 89, 144 };
+  std::vector<int> container;
+  container.push_back( 0 );
+  container.push_back( 1 );
+  container.push_back( 1 );
+  container.push_back( 2 );
+  container.push_back( 3 );
+  container.push_back( 5 );
+  container.push_back( 8 );
+  container.push_back( 13 );
+  container.push_back( 21 );
+  container.push_back( 34 );
+  container.push_back( 55 );
+  container.push_back( 89 );
+  container.push_back( 144 );
 
-      for (const int& i : v) // access by const reference
-          std::cout << i << ' ';
-      std::cout << '\n'; */
+  /* Original in C++98 */
+  /* for(std::vector<int>::iterator it = container.begin(); it != container.end(); ++it) {
+
+    std::cout << "Value: " << (*it) << std::endl;
+  } */
+
+  foreach ( /* const int & */ _value, container ) {
+
+    std::cout << "Value: " << ( *_value ) << std::endl;
+  }
+
+  /* C++11 */
+  /* for ( const int &_value : container ) {
+
+    std::cout << "Value: " << ( *_iterator ) << std::endl;
+  } */
 
   return EXIT_SUCCESS;
 }
