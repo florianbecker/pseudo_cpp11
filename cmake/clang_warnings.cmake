@@ -42,5 +42,4 @@ set(WARNING_FLAGS
   -Wno-missing-prototypes
   -Wno-keyword-macro
   -Wno-weak-vtables
-  -Wno-c++17-extensions
 )

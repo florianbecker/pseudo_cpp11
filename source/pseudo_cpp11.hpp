@@ -37,11 +37,8 @@
   #define override
 
   /* Final keyword */
-  #ifdef __NT__
-    /* Visual Studio 2010 and 2008 */
-    #if _MSC_VER <= 1600
-      #define final sealed
-    #endif
+  #if defined(_MSC_VER)
+    #define final sealed
   #else
     #define final
   #endif
@@ -66,7 +63,7 @@
 /* constexpr is available with C++11 */
 /* @note Drop in replacement with C++11 build */
 #if !(__has_cpp_attribute(__cpp_constexpr))
-  #define constexpr inline
+  #define constexpr static const
 #endif
 
 /* noexcept keyword is available with C++11 */
@@ -74,8 +71,8 @@
 #if !(__has_cpp_attribute(__cpp_noexcept_function_type))
   #ifdef __GNUC__
     #define noexcept
-  #elif defined(_MSC_VER)
-    #define noexcept __declspec(nothrow)
+  #elif defined(_MSC_VER) // __declspec(nothrow)
+    #define noexcept
   #endif
 #endif
 
