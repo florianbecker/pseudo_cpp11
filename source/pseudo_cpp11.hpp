@@ -62,33 +62,45 @@
 
 /* constexpr is available with C++11 */
 /* @note Drop in replacement with C++11 build */
-#if !(__has_cpp_attribute(__cpp_constexpr))
+#ifdef __has_cpp_attribute
+  #if !(__has_cpp_attribute(__cpp_constexpr))
+    #define constexpr static const
+  #endif
+#else
   #define constexpr static const
 #endif
 
 /* noexcept keyword is available with C++11 */
 /* @note Drop in replacement with C++11 build */
-#if !(__has_cpp_attribute(__cpp_noexcept_function_type))
-  #ifdef __GNUC__
-    #define noexcept
-  #elif defined(_MSC_VER) // __declspec(nothrow)
-    #define noexcept
+#ifdef __has_cpp_attribute
+  #if !(__has_cpp_attribute(__cpp_noexcept_function_type))
+    #ifdef __GNUC__
+      #define noexcept
+    #elif defined(_MSC_VER) // __declspec(nothrow)
+      #define noexcept
+    #endif
   #endif
+#else
+  #define noexcept
 #endif
 
 /* [[noreturn]] is available with C++14 */
 /* @note Just fake and mostly useless */
 /* @note Must be searched and replaced, with C++14 build to remove */
-#if __has_cpp_attribute(noreturn)
-  #pragma message("Replace NORETURN with [[noreturn]]")
+#ifdef __has_cpp_attribute
+  #if __has_cpp_attribute(noreturn)
+    #pragma message("Replace NORETURN with [[noreturn]]")
+  #endif
 #endif
 #define NORETURN
 
 /* [[maybe_usused]] is available with C++17 */
 /* Suppress compiler warning for unused */
 /* @note Must be searched and replaced, with C++17 build to remove */
-#if __has_cpp_attribute(maybe_unused)
-  #pragma message("Replace MAYBE_UNUSED with [[maybe_unused]]")
+#ifdef __has_cpp_attribute
+  #if __has_cpp_attribute(maybe_unused)
+    #pragma message("Replace MAYBE_UNUSED with [[maybe_unused]]")
+  #endif
 #endif
 #define MAYBE_UNUSED (void)
 
@@ -96,7 +108,9 @@
 /* Disregard the return result */
 /* @note Just fake */
 /* @note Must be searched and replaced, with C++17 build to remove */
-#if __has_cpp_attribute(nodiscard)
-  #pragma message("Replace NODISCARD with [[nodiscard]]")
+#ifdef __has_cpp_attribute
+  #if __has_cpp_attribute(nodiscard)
+    #pragma message("Replace NODISCARD with [[nodiscard]]")
+  #endif
 #endif
 #define NODISCARD
