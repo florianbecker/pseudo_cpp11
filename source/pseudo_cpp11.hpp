@@ -94,7 +94,7 @@
 /* [[deprecated]] is available with C++14 */
 /* @note Must be searched and replaced, with C++14 build to remove */
 /* @todo Replace DEPRECATED with [[deprecated]] */
-#if defined __has_cpp_attribute && __has_cpp_attribute(deprecated)
+#if defined __has_cpp_attribute && __has_cpp_attribute(deprecated) && __cplusplus >= 201103L
   #define DEPRECATED [[deprecated]]
 #else
   #ifdef __GNUC__
@@ -111,7 +111,7 @@
 /* @note Just fake and mostly useless */
 /* @note Must be searched and replaced, with C++14 build to remove */
 /* @todo Replace NORETURN with [[noreturn]] */
-#if defined __has_cpp_attribute && __has_cpp_attribute(noreturn)
+#if defined __has_cpp_attribute && __has_cpp_attribute(noreturn) && __cplusplus >= 201103L
   #define NORETURN [[noreturn]]
 #else
   #if defined(_MSC_VER)
@@ -125,7 +125,7 @@
 /* Suppress compiler warning for unused */
 /* @note Must be searched and replaced, with C++17 build to remove */
 /* @todo Replace MAYBE_UNUSED with [[maybe_unused]] */
-#if defined __has_cpp_attribute && __has_cpp_attribute(maybe_unused)
+#if defined __has_cpp_attribute && __has_cpp_attribute(maybe_unused) && __cplusplus >= 201103L
   #define MAYBE_UNUSED [[maybe_unused]]
 #else
   #ifdef __GNUC__
@@ -144,7 +144,7 @@
 /* @note Just fake */
 /* @note Must be searched and replaced, with C++17 build to remove */
 /* @todo Replace NODISCARD with [[nodiscard]] */
-#if defined __has_cpp_attribute && __has_cpp_attribute(nodiscard)
+#if defined __has_cpp_attribute && __has_cpp_attribute(nodiscard) && __cplusplus >= 201103L
   #define NODISCARD [[nodiscard]]
 #else
   #ifdef __GNUC__

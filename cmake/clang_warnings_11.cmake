@@ -39,4 +39,7 @@ set(WARNING_FLAGS
   -Wno-missing-prototypes
   -Wno-keyword-macro
   -Wno-weak-vtables
+
+  # Remove suggest override, clang-11 and above will do this
+  -Wno-suggest-override
 )
