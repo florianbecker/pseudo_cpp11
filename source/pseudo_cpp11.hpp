@@ -50,6 +50,14 @@
   #ifndef nullptr
     #define nullptr 0
   #endif
+
+  /* default and delete */
+  #define DEFAULT {}
+  #define DELETE {}
+#else
+  /* default and delete */
+  #define DEFAULT = default;
+  #define DELETE = delete;
 #endif
 
 /* range based loop function */

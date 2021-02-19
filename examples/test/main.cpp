@@ -38,8 +38,8 @@
 class Test {
 
 public:
-  explicit Test() {}
-  virtual ~Test() {}
+  explicit Test() DEFAULT
+  virtual ~Test() DEFAULT
 
 protected:
   virtual void blub() {}

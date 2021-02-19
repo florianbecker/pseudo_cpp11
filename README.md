@@ -17,6 +17,11 @@ Some are fake, some are functional, but all are direct compileable with --std=c+
 - constexpr
 
 ## Macros
+### Keywords
+- DEFAULT as = default;
+- DELETE as = delete;
+
+### Attributes
 - NORETURN as [[noreturn]]
 - NODISCARD as [[nodiscard]]
 - MAYBE_UNUSED as [[maybe_unused]]
