@@ -11,7 +11,7 @@ This will help you to port a C++98 project easily to C++11 and above.
 ## Keywords for C++98
 Some are fake, some are functional, but all are direct compileable with --std=c++11
 - explicit // (only fake)
-- noexcept
+- noexcept // (only functional on clang and gcc)
 - override // (only fake)
 - final // (only fake)
 - nullptr
@@ -24,9 +24,9 @@ Some are fake, some are functional, but all are direct compileable with --std=c+
 
 ### Attributes
 - DEPRECATED as [[deprecated]]
-- NORETURN as [[noreturn]] *only functional on Visual Studio
-- NODISCARD as [[nodiscard]] *only functional on clang and gcc
-- MAYBE_UNUSED as [[maybe_unused]] *only functional on clang and gcc
+- NORETURN as [[noreturn]] // (only functional on Visual Studio)
+- NODISCARD as [[nodiscard]] // (only functional on clang and gcc)
+- MAYBE_UNUSED as [[maybe_unused]] // (only functional on clang and gcc)
 - UNUSED as (void) - not explicit C++11, but to compress compiler warnings until the project convertion is done.
 
 ## Loop

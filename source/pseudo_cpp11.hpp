@@ -83,8 +83,8 @@
 #ifndef __cpp_noexcept_function_type
   #ifdef __GNUC__
     #define noexcept __attribute__((nothrow))
-  #elif defined(_MSC_VER)
-    #define noexcept __declspec(nothrow)
+  #elif defined(_MSC_VER) // __declspec(nothrow)
+    #define noexcept
   #else
     #pragma message("Unsupported compiler for pseudo_cpp11:noexcept");
     #define noexcept
