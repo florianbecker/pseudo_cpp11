@@ -28,6 +28,9 @@
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
+/* c header */
+#include <cstdlib> // EXIT_SUCCESS
+
 /* stl header */
 #include <iostream>
 #include <vector>
