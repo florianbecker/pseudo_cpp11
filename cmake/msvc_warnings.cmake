@@ -32,4 +32,7 @@ set(WARNING_FLAGS
 
   # unexpected tokens following preprocessor directive - expected a newline
   /wd4067
+
+  # nonstandard extension used: override specifier 'sealed'
+  /wd4481
 )

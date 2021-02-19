@@ -71,7 +71,9 @@ constexpr int b = 5;
 int main() {
 
   MAYBE_UNUSED int a = 0;
-//  UNUSED a;
+#if defined(_MSC_VER)
+  UNUSED a;
+#endif
 
   std::cout << "C++ Build: " << __cplusplus << std::endl;
   std::cout << "Contexpr: " << b << std::endl;

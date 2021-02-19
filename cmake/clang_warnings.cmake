@@ -35,7 +35,11 @@ set(WARNING_FLAGS
   -Wno-c++98-compat-pedantic # C++11
   -Wno-padded
 
+  # Bad example class, but this is only for testing
   -Wno-missing-prototypes
   -Wno-keyword-macro
   -Wno-weak-vtables
+
+  # Remove suggest override, clang-11 and above will do this
+  -Wno-suggest-override
 )
