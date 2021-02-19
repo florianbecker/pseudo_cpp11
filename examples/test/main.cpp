@@ -51,7 +51,7 @@ public:
   explicit Test2() : Test() {}
 
 protected:
-  void blub() override noexcept {}
+  void blub() noexcept override {}
 };
 
 class Test3 : Test2 {
@@ -60,7 +60,7 @@ public:
   explicit Test3() : Test2() {}
 
 protected:
-  void blub() final {}
+  DEPRECATED void blub() noexcept final {}
 };
 
 constexpr int b = 5;
@@ -68,12 +68,12 @@ constexpr int b = 5;
 int main() {
 
   MAYBE_UNUSED int a = 0;
-  UNUSED a;
+//  UNUSED a;
 
   std::cout << "C++ Build: " << __cplusplus << std::endl;
   std::cout << "Contexpr: " << b << std::endl;
 
-  MAYBE_UNUSED int *c = nullptr;
+  /* MAYBE_UNUSED - Will return compile error :) */ int *c = nullptr;
   if ( c == nullptr ) {
 
     std::cout << "c == nullptr" << std::endl;

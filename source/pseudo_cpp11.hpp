@@ -38,7 +38,11 @@
 
   /* Final keyword */
   #if defined(_MSC_VER)
-    #define final
+    #if _MSC_VER >= 1600
+      #define final sealed
+    #else
+      #define final
+    #endif
   #else
     #define final
   #endif
@@ -70,54 +74,65 @@
 
 /* constexpr is available with C++11 */
 /* @note Drop in replacement with C++11 build */
-#ifdef __has_cpp_attribute
-  #if !(__has_cpp_attribute(__cpp_constexpr))
-    #define constexpr static const
-  #endif
-#else
+#ifndef __cpp_constexpr
   #define constexpr static const
 #endif
 
 /* noexcept keyword is available with C++11 */
 /* @note Drop in replacement with C++11 build */
-#ifdef __has_cpp_attribute
-  #if !(__has_cpp_attribute(__cpp_noexcept_function_type))
-    #ifdef __GNUC__
-      #define noexcept
-    #elif defined(_MSC_VER) // __declspec(nothrow)
-      #define noexcept
-    #endif
+#ifndef __cpp_noexcept_function_type
+  #ifdef __GNUC__
+    #define noexcept __attribute__((nothrow))
+  #elif defined(_MSC_VER)
+    #define noexcept __declspec(nothrow)
+  #else
+    #pragma message("Unsupported compiler for pseudo_cpp11:noexcept");
+    #define noexcept
   #endif
+#endif
+
+/* [[deprecated]] is available with C++14 */
+/* @note Must be searched and replaced, with C++14 build to remove */
+/* @todo Replace DEPRECATED with [[deprecated]] */
+#if defined __has_cpp_attribute && __has_cpp_attribute(deprecated)
+  #define DEPRECATED [[deprecated]]
 #else
-  #define noexcept
+  #ifdef __GNUC__
+    #define DEPRECATED __attribute__((deprecated))
+  #elif defined(_MSC_VER)
+    #define DEPRECATED __declspec(deprecated)
+  #else
+    #pragma message("Unsupported compiler for pseudo_cpp11:DEPRECATED");
+    #define DEPRECATED
+  #endif
 #endif
 
 /* [[noreturn]] is available with C++14 */
 /* @note Just fake and mostly useless */
 /* @note Must be searched and replaced, with C++14 build to remove */
 /* @todo Replace NORETURN with [[noreturn]] */
-#ifdef __has_cpp_attribute
-  #if __has_cpp_attribute(noreturn)
-    #define NORETURN [[noreturn]]
+#if defined __has_cpp_attribute && __has_cpp_attribute(noreturn)
+  #define NORETURN [[noreturn]]
+#else
+  #if defined(_MSC_VER)
+    #define NORETURN __declspec(noreturn)
   #else
     #define NORETURN
   #endif
-#else
-  #define NORETURN
 #endif
 
 /* [[maybe_usused]] is available with C++17 */
 /* Suppress compiler warning for unused */
 /* @note Must be searched and replaced, with C++17 build to remove */
 /* @todo Replace MAYBE_UNUSED with [[maybe_unused]] */
-#ifdef __has_cpp_attribute
-  #if __has_cpp_attribute(maybe_unused)
-    #define MAYBE_UNUSED [[maybe_unused]]
-  #else
+#if defined __has_cpp_attribute && __has_cpp_attribute(maybe_unused)
+  #define MAYBE_UNUSED [[maybe_unused]]
+#else
+  #ifdef __GNUC__
+    #define MAYBE_UNUSED __attribute__((unused))
+  #elif defined(_MSC_VER)
     #define MAYBE_UNUSED
   #endif
-#else
-  #define MAYBE_UNUSED
 #endif
 
 /* Not specific C++11, but needed with MAYBE_UNUSED */
@@ -129,12 +144,12 @@
 /* @note Just fake */
 /* @note Must be searched and replaced, with C++17 build to remove */
 /* @todo Replace NODISCARD with [[nodiscard]] */
-#ifdef __has_cpp_attribute
-  #if __has_cpp_attribute(nodiscard)
-    #define NODISCARD [[nodiscard]]
+#if defined __has_cpp_attribute && __has_cpp_attribute(nodiscard)
+  #define NODISCARD [[nodiscard]]
+#else
+  #ifdef __GNUC__
+    #define NODISCARD __attribute__((warn_unused_result))
   #else
     #define NODISCARD
   #endif
-#else
-  #define NODISCARD
 #endif

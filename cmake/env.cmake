@@ -31,6 +31,9 @@
 # for debugging of build steps
 set(CMAKE_VERBOSE_MAKEFILE OFF)
 
+# c++ standard - possible: 98, 11, 14, 17
+set(CMAKE_CXX_STANDARD 98)
+
 # Pathes
 if(NOT DEV)
   get_filename_component(DEV "${CMAKE_CURRENT_LIST_DIR}/.." ABSOLUTE)
@@ -40,7 +43,6 @@ set(CMAKE ${DEV}/cmake)
 set(SOURCE ${DEV}/source)
 
 # Force C++98
-set(CMAKE_CXX_STANDARD 98)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(CMAKE_CXX_EXTENSIONS OFF)
 
