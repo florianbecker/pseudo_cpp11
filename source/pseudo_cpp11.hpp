@@ -58,6 +58,19 @@
   /* default and delete */
   #define DEFAULT {}
   #define DELETE {}
+
+  /* noexcept keyword is available with C++11 */
+  /* @note Drop in replacement with C++11 build */
+  #ifndef __cpp_noexcept_function_type
+    #ifdef __GNUC__
+      #define noexcept __attribute__((nothrow))
+    #elif defined(_MSC_VER) // __declspec(nothrow)
+      #define noexcept
+    #else
+      #pragma message("Unsupported compiler for pseudo_cpp11:noexcept");
+      #define noexcept
+    #endif
+  #endif
 #else
   /* default and delete */
   #define DEFAULT = default;
@@ -66,10 +79,10 @@
 
 /* range based loop function */
 #if defined(_MSC_VER)
-#define foreach( value, container ) for each ( value in container )
+  #define foreach( value, container ) for each ( value in container )
 #else
-#define var( v, init ) __typeof( init ) v = ( init )
-#define foreach( iterator, container ) for ( var( iterator, ( container ).begin() ); iterator != ( container ).end(); iterator++ )
+  #define var( v, init ) __typeof( init ) v = ( init )
+  #define foreach( iterator, container ) for ( var( iterator, ( container ).begin() ); iterator != ( container ).end(); iterator++ )
 #endif
 
 /* constexpr is available with C++11 */
@@ -78,23 +91,10 @@
   #define constexpr static const
 #endif
 
-/* noexcept keyword is available with C++11 */
-/* @note Drop in replacement with C++11 build */
-#ifndef __cpp_noexcept_function_type
-  #ifdef __GNUC__
-    #define noexcept __attribute__((nothrow))
-  #elif defined(_MSC_VER) // __declspec(nothrow)
-    #define noexcept
-  #else
-    #pragma message("Unsupported compiler for pseudo_cpp11:noexcept");
-    #define noexcept
-  #endif
-#endif
-
 /* [[deprecated]] is available with C++14 */
 /* @note Must be searched and replaced, with C++14 build to remove */
 /* @todo Replace DEPRECATED with [[deprecated]] */
-#if defined __has_cpp_attribute && __has_cpp_attribute(deprecated) && __cplusplus >= 201103L
+#if defined __has_cpp_attribute && __has_cpp_attribute(deprecated) && __cplusplus >= 201402L
   #define DEPRECATED [[deprecated]]
 #else
   #ifdef __GNUC__
@@ -111,7 +111,7 @@
 /* @note Just fake and mostly useless */
 /* @note Must be searched and replaced, with C++14 build to remove */
 /* @todo Replace NORETURN with [[noreturn]] */
-#if defined __has_cpp_attribute && __has_cpp_attribute(noreturn) && __cplusplus >= 201103L
+#if defined __has_cpp_attribute && __has_cpp_attribute(noreturn) && __cplusplus >= 201402L
   #define NORETURN [[noreturn]]
 #else
   #if defined(_MSC_VER)
@@ -125,7 +125,7 @@
 /* Suppress compiler warning for unused */
 /* @note Must be searched and replaced, with C++17 build to remove */
 /* @todo Replace MAYBE_UNUSED with [[maybe_unused]] */
-#if defined __has_cpp_attribute && __has_cpp_attribute(maybe_unused) && __cplusplus >= 201103L
+#if defined __has_cpp_attribute && __has_cpp_attribute(maybe_unused) && __cplusplus >= 201703L
   #define MAYBE_UNUSED [[maybe_unused]]
 #else
   #ifdef __GNUC__
@@ -144,7 +144,7 @@
 /* @note Just fake */
 /* @note Must be searched and replaced, with C++17 build to remove */
 /* @todo Replace NODISCARD with [[nodiscard]] */
-#if defined __has_cpp_attribute && __has_cpp_attribute(nodiscard) && __cplusplus >= 201103L
+#if defined __has_cpp_attribute && __has_cpp_attribute(nodiscard) && __cplusplus >= 201703L
   #define NODISCARD [[nodiscard]]
 #else
   #ifdef __GNUC__
