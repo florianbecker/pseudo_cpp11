@@ -35,12 +35,12 @@ set(CMAKE_VERBOSE_MAKEFILE OFF)
 set(CMAKE_CXX_STANDARD 98)
 
 # Pathes
-if(NOT DEV)
-  get_filename_component(DEV "${CMAKE_CURRENT_LIST_DIR}/.." ABSOLUTE)
+if(NOT ROOT)
+  get_filename_component(ROOT "${CMAKE_CURRENT_LIST_DIR}/.." ABSOLUTE)
 endif()
 
-set(CMAKE ${DEV}/cmake)
-set(SOURCE ${DEV}/source)
+set(CMAKE ${ROOT}/cmake)
+set(SOURCE ${ROOT}/source)
 
 # Force C++98
 set(CMAKE_CXX_STANDARD_REQUIRED ON)

@@ -35,7 +35,6 @@ include_directories(${PROJECT_NAME} ${SOURCE})
 add_executable(${PROJECT_NAME}
   main.cpp
   ${SOURCE}/pseudo_cpp11.hpp
-  ${DEV}/README.md
+  ${ROOT}/README.md
+  ${ROOT}/.github/workflows/integrate.yml
 )
-
-#target_link_libraries(${PROJECT_NAME} PRIVATE pseudoCPP11)
