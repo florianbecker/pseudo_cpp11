@@ -45,25 +45,25 @@ public:
   virtual ~Test() DEFAULT
 
 protected:
-  virtual void blub() {}
+  virtual void blub() { /* this is just for demonstration */ }
 };
 
-class Test2 : Test {
+class Test2 : public Test {
 
 public:
-  explicit Test2() : Test() {}
+  explicit Test2() : Test() { /* this is just for demonstration */ }
 
 protected:
-  void blub() noexcept override {}
+  void blub() noexcept override { /* this is just for demonstration */ }
 };
 
-class Test3 : Test2 {
+class Test3 : public Test2 {
 
 public:
-  explicit Test3() : Test2() {}
+  explicit Test3() : Test2() { /* this is just for demonstration */ }
 
 protected:
-  DEPRECATED void blub() noexcept final {}
+  DEPRECATED void blub() noexcept final { /* this is just for demonstration */ }
 };
 
 constexpr int b = 5;
@@ -78,7 +78,7 @@ int main() {
   std::cout << "C++ Build: " << __cplusplus << std::endl;
   std::cout << "Contexpr: " << b << std::endl;
 
-  /* MAYBE_UNUSED - Will return compile error :) */ int *c = nullptr;
+  /* MAYBE_UNUSED - Will return compile error :) */ const int *c = nullptr;
   if ( c == nullptr ) {
 
     std::cout << "c == nullptr" << std::endl;

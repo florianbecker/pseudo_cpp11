@@ -32,7 +32,9 @@
 set(CMAKE_VERBOSE_MAKEFILE OFF)
 
 # c++ standard - possible: 98, 11, 14, 17
-set(CMAKE_CXX_STANDARD 98)
+if(NOT CMAKE_CXX_STANDARD)
+  set(CMAKE_CXX_STANDARD 98)
+endif()
 
 # Pathes
 if(NOT ROOT)
@@ -42,7 +44,7 @@ endif()
 set(CMAKE ${ROOT}/cmake)
 set(SOURCE ${ROOT}/source)
 
-# Force C++98
+# Force C++ Standard
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(CMAKE_CXX_EXTENSIONS OFF)
 
