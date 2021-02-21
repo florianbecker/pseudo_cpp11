@@ -47,6 +47,15 @@ foreach ( _value, container ) {
 }
 ```
 
+## Not working
+This helper is mostly for porting to C++11 and above, so this features will not work within this project:
+- auto keyword
+- using keyword
+- initializer_list
+- lambda functions
+- variadic templates
+- other specific C++11 features, not explicit listed here
+
 ## User-defined build variables
 Inside cmake/env.cmake you will find some user-defined build variables for particular purposes.
 
@@ -66,4 +75,5 @@ set(CMAKE_CXX_STANDARD 11)
 
 ## Support
 - from Microsoft Visual Studio 2008
-- Clang and GCC projects
+- Clang >= 8 (Earlier not tested)
+- GCC >= 7 (Earlier not tested)
